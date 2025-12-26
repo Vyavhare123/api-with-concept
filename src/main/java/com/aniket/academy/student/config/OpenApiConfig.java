@@ -13,4 +13,5 @@ import org.springframework.context.annotation.Configuration;
         )
 )
 public class OpenApiConfig {
+        // This ic configuration class for swagger implementation
 }
