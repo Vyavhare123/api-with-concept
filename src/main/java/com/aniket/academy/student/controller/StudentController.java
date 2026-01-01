@@ -27,21 +27,39 @@ public class StudentController {
         StudentDto saveStudents=studentService.saveStudent(studentDto);
         return new ResponseEntity<StudentDto>(saveStudents, HttpStatus.CREATED);
     }
+
+    @Operation(
+            summary = "getAll Student",
+            description = "get List of student record"
+    )
     @GetMapping
     public ResponseEntity<List<StudentDto>>getAllStudents(){
         List<StudentDto> Students=studentService.getAllStudents();
         return new ResponseEntity<List<StudentDto>>(Students, HttpStatus.OK);
     }
+
+    @Operation(
+            summary = "get Student ById",
+            description = "get student record ById"
+    )
     @GetMapping("/{id}")
     public ResponseEntity<StudentDto>getStudentById(@PathVariable Long id){
         StudentDto saveStudents=studentService.getStudentById(id);
         return new ResponseEntity<StudentDto>(saveStudents, HttpStatus.OK);
     }
+    @Operation(
+            summary = "Update Student ById",
+            description = "Update Student ById"
+    )
     @PutMapping(("/{id}"))
     public ResponseEntity<StudentDto>updateStudent(@RequestBody StudentDto studentDto,@PathVariable Long id){
         StudentDto saveStudents=studentService.updateStudent(studentDto,id);
         return new ResponseEntity<StudentDto>(saveStudents, HttpStatus.OK);
     }
+    @Operation(
+            summary = "Delete Student ById",
+            description = "Delete student record ById"
+    )
     @DeleteMapping("/{id}")
     public ResponseEntity<Void>deleteStudent(@PathVariable Long id){
         studentService.deleteStudent(id);
