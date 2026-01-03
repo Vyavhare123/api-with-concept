@@ -2,6 +2,8 @@ package com.aniket.academy.student.model;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 
 @AllArgsConstructor
 @NoArgsConstructor

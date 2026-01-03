@@ -2,11 +2,14 @@ package com.aniket.academy.student.model;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class StudentDto {
+//added Serializable for to stored data in redis
+public class StudentDto implements Serializable{
     private Long id ;
     private String name;
     private String email;

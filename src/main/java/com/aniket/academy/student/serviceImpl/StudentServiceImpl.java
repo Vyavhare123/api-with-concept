@@ -9,6 +9,9 @@ import com.aniket.academy.student.service.StudentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,14 +27,16 @@ public class StudentServiceImpl implements StudentService {
     private final ObjectMapper objectMapper;
 
     @Override
+    @CacheEvict(value = "students", allEntries = true)
     public StudentDto saveStudent(CreateStudentDto studentDto) {
-        log.trace("inside saveStudent", studentDto);
+        log.info("inside saveStudent", studentDto);
       Student student= objectMapper.convertValue(studentDto, Student.class);
         Student saveStudent=studentRepository.save(student);
         return objectMapper.convertValue(saveStudent, StudentDto.class);
     }
 
     @Override
+    @Cacheable(value = "students")
     public List<StudentDto> getAllStudents() {
         log.info("inside getAllStudents");
         List<StudentDto> listOfStudent=studentRepository.findAll().stream().map(Student->objectMapper.convertValue(Student,StudentDto.class)).collect(Collectors.toList());
@@ -39,6 +44,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Cacheable(value = "studentById", key = "#id")
     public StudentDto getStudentById(Long id) {
         log.info("Inside getStudentById" , id);
       Student student= studentRepository.findById(id).orElseThrow(()-> new StudentNotFoundException(id));
@@ -46,6 +52,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @CachePut(value = "studentById", key = "#id")
+    @CacheEvict(value = "students", allEntries = true)
     public StudentDto updateStudent(StudentDto studentDto, Long id) {
         log.info("student updated with", id);
         Student student= studentRepository.findById(id).orElseThrow(()-> new StudentNotFoundException(id));
@@ -58,6 +66,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @CacheEvict(value = { "studentById", "students" }, allEntries = true)
     public void deleteStudent(Long id) {
         log.info("deleted Student with id", id);
         Student student= studentRepository.findById(id).orElseThrow(()-> new StudentNotFoundException(id));

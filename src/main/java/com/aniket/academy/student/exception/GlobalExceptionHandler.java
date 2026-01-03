@@ -4,6 +4,7 @@ import com.aniket.academy.student.model.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -29,5 +30,13 @@ public class GlobalExceptionHandler {
         err.setStatus(HttpStatus.BAD_REQUEST.value());
         err.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<ErrorResponse>(err,HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<ErrorResponse>handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex){
+        ErrorResponse err = new ErrorResponse();
+        err.setTimestamp(LocalDateTime.now());
+        err.setMessage("please enter correct end point or Api url");
+        err.setStatus(HttpStatus.METHOD_NOT_ALLOWED.value());
+        return new ResponseEntity<ErrorResponse>(err,HttpStatus.METHOD_NOT_ALLOWED);
     }
 }
