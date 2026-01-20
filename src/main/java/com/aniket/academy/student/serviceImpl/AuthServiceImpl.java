@@ -28,7 +28,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthUtil authUtil;
     @Override
     public LoginResponseDto login(LoginRequestDto loginRequestDto) {
-    log.info("inside AuthServiceImpl service class and calling authenticationManager **********************************************************  ");
+    log.info("inside AuthServiceImpl service class and calling authenticationManager ********************************************************** 4 ");
       Authentication authentication= authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.getUsername(),loginRequestDto.getPassword()));
       User user= (User) authentication.getPrincipal();
       String jwtToken =authUtil.generateAccessToken(user);

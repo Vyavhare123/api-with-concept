@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 @Slf4j
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandlerForApi {
     @ExceptionHandler(StudentNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleStudentNotFoundException(StudentNotFoundException ex) {
         ErrorResponse err = new ErrorResponse();
@@ -39,15 +39,15 @@ public class GlobalExceptionHandler {
         err.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<ErrorResponse>(err, HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler(Exception.class)
+    /*@ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleAllException(Exception ex){
         log.error("Unhandled exception occurred", ex);
         ErrorResponse err = new ErrorResponse();
-        err.setMessage("something Went Wrong With request");
+        err.setMessage("something Went Wrong With request123");
         err.setStatus(HttpStatus.BAD_REQUEST.value());
         err.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<ErrorResponse>(err,HttpStatus.BAD_REQUEST);
-    }
+    }*/
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ErrorResponse>handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex){
         ErrorResponse err = new ErrorResponse();
