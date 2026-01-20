@@ -1,8 +1,6 @@
-package com.aniket.academy.student.model;
+package com.aniket.academy.student.dto;
 
 import lombok.*;
-
-import java.io.Serializable;
 
 
 @AllArgsConstructor
