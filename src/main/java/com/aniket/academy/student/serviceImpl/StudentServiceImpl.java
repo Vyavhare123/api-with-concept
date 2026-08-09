@@ -2,8 +2,8 @@ package com.aniket.academy.student.serviceImpl;
 
 import com.aniket.academy.student.Entiity.Student;
 import com.aniket.academy.student.exception.StudentNotFoundException;
-import com.aniket.academy.student.model.CreateStudentDto;
-import com.aniket.academy.student.model.StudentDto;
+import com.aniket.academy.student.dto.CreateStudentDto;
+import com.aniket.academy.student.dto.StudentDto;
 import com.aniket.academy.student.repository.StudentRepository;
 import com.aniket.academy.student.service.StudentService;
 import com.fasterxml.jackson.databind.ObjectMapper;

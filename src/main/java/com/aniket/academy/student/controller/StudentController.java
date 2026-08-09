@@ -1,11 +1,10 @@
 package com.aniket.academy.student.controller;
 
-import com.aniket.academy.student.model.CreateStudentDto;
-import com.aniket.academy.student.model.StudentDto;
+import com.aniket.academy.student.dto.CreateStudentDto;
+import com.aniket.academy.student.dto.StudentDto;
 import com.aniket.academy.student.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.aniket.academy.student.service;
 
-import com.aniket.academy.student.model.CreateStudentDto;
-import com.aniket.academy.student.model.StudentDto;
+import com.aniket.academy.student.dto.CreateStudentDto;
+import com.aniket.academy.student.dto.StudentDto;
 
 import java.util.List;
 
